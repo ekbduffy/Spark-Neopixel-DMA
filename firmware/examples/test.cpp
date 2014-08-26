@@ -1,5 +1,5 @@
 #include "application.h"
-#include "neopixel-dma/ws2812.h"
+#include "neopixel-dma/neopixel-dma.h"
 
 ws2812 ws2812;
 
