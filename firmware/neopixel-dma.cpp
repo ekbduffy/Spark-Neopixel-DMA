@@ -134,13 +134,13 @@ void ws2812::color2pwm(int pos, uint8_t color1, uint8_t color2, uint8_t color3) 
 void ws2812::show(void) {
 	Update_Buffer();
 	DMA_SetCurrDataCounter(DMA1_Channel1, pwm_buffer_size); 	// load number of bytes to be transferred
-	TIM_Cmd(TIM4, ENABLE); 						// enable Timer 3
 	DMA_Cmd(DMA1_Channel1, ENABLE); 			// enable DMA channel 6
+	TIM_Cmd(TIM4, ENABLE); 						// enable Timer 3
 //	TIM_DMACmd(TIM4, TIM_DMA_CC1, ENABLE);
 //	TIM_DMACmd(TIM4, TIM_DMA_Update, ENABLE);
 
 	while(!DMA_GetFlagStatus(DMA1_FLAG_TC1)); 	// wait until transfer complete
-	TIM_Cmd(TIM3, DISABLE); 					// disable Timer 3
+	TIM_Cmd(TIM4, DISABLE); 					// disable Timer 3
 	DMA_Cmd(DMA1_Channel1, DISABLE); 			// disable DMA channel 6
 	DMA_ClearFlag(DMA1_FLAG_TC1); 				// clear DMA1 Channel 6 transfer complete flag
 
@@ -154,7 +154,7 @@ void ws2812::direct_show(void) {
 //	TIM_DMACmd(TIM4, TIM_DMA_Update, ENABLE);
 
 	while(!DMA_GetFlagStatus(DMA1_FLAG_TC1)); 	// wait until transfer complete
-	TIM_Cmd(TIM3, DISABLE); 					// disable Timer 3
+	TIM_Cmd(TIM4, DISABLE); 					// disable Timer 3
 	DMA_Cmd(DMA1_Channel1, DISABLE); 			// disable DMA channel 6
 	DMA_ClearFlag(DMA1_FLAG_TC1); 				// clear DMA1 Channel 6 transfer complete flag
 
